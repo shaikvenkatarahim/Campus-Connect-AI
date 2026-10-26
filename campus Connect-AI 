@@ -1,0 +1,297 @@
+
+<!DOCTYPE html>
+<html lang="en" class="h-full bg-slate-50">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vishnu CampusConnect AI — VITB & SVECW Bhimavaram</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#eff6ff',
+                            100: '#dbeafe',
+                            500: '#2563eb',
+                            600: '#1d4ed8',
+                            700: '#1e40af',
+                            800: '#1e3a8a',
+                            900: '#0f172a',
+                        },
+                        vishnu: {
+                            50: '#fff7ed',
+                            100: '#ffedd5',
+                            500: '#ea580c',
+                            600: '#c2410c',
+                            700: '#9a3412',
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .scrollbar-thin::-webkit-scrollbar { width: 6px; }
+        .scrollbar-thin::-webkit-scrollbar-track { background: #f1f5f9; }
+        .scrollbar-thin::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 3px; }
+        .scrollbar-thin::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+    </style>
+</head>
+<body class="h-full text-slate-800 flex flex-col antialiased bg-slate-50">
+
+    <!-- TOP NAVIGATION BAR WITH COMBINED FOUNDER PORTRAIT -->
+    <header class="bg-brand-900 text-white sticky top-0 z-40 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <!-- Logo & Single Combined Founder Portrait (Dr. B.V. Raju & Smt. Sita Raju) -->
+                <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('dashboard')">
+                    
+                    <!-- Single Frame Combined Image Badge -->
+                    <div class="relative group flex items-center justify-center">
+                        <div class="w-14 h-14 rounded-full overflow-hidden border-2 border-amber-400 bg-slate-800 shadow-md flex items-center justify-center p-0.5">
+                            <img src="1000013222.jpg" 
+                                 alt="Founder Dr. B. V. Raju & Smt. Sita Raju" 
+                                 class="w-full h-full object-cover rounded-full"
+                                 title="Late Dr. B. V. Raju (Padma Bhushan) & Smt. Sita Raju"
+                                 onerror="this.src='https://ui-avatars.com/api/?name=BV+Raju+Sita&background=ea580c&color=fff&bold=true'">
+                        </div>
+                        <span class="absolute -bottom-1 bg-amber-500 text-black text-[9px] font-extrabold px-1.5 py-0.2 rounded-full border border-white uppercase tracking-tight shadow">FOUNDERS</span>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center space-x-2">
+                            <span class="font-extrabold text-lg sm:text-xl tracking-tight">
+                                Vishnu <span class="text-amber-400">CampusConnect</span> 
+                                <span class="text-brand-500 bg-brand-50/10 px-1.5 py-0.5 rounded text-[10px] uppercase font-black">AI</span>
+                            </span>
+                        </div>
+                        <p class="text-[11px] text-brand-200 hidden sm:block font-medium">
+                            <i class="fa-solid fa-award text-amber-400 mr-1"></i>Padma Bhushan Dr. B.V. Raju & Smt. Sita Raju Legacy • VITB & SVECW
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex space-x-1">
+                    <button onclick="switchTab('dashboard')" id="nav-dashboard" class="nav-btn px-3 py-2 rounded-lg text-xs font-semibold transition-colors bg-brand-800 text-white">
+                        <i class="fa-solid fa-chart-pie mr-1.5"></i> Dashboard
+                    </button>
+                    <button onclick="switchTab('notices')" id="nav-notices" class="nav-btn px-3 py-2 rounded-lg text-xs font-semibold text-brand-100 hover:bg-brand-800 hover:text-white transition-colors">
+                        <i class="fa-solid fa-bullhorn mr-1.5"></i> Notices
+                    </button>
+                    <button onclick="switchTab('tasks')" id="nav-tasks" class="nav-btn px-3 py-2 rounded-lg text-xs font-semibold text-brand-100 hover:bg-brand-800 hover:text-white transition-colors">
+                        <i class="fa-solid fa-tasks mr-1.5"></i> Deadlines
+                    </button>
+                    <button onclick="switchTab('events')" id="nav-events" class="nav-btn px-3 py-2 rounded-lg text-xs font-semibold text-brand-100 hover:bg-brand-800 hover:text-white transition-colors">
+                        <i class="fa-solid fa-calendar-alt mr-1.5"></i> Events
+                    </button>
+                    <button onclick="switchTab('assistant')" id="nav-assistant" class="nav-btn px-3 py-2 rounded-lg text-xs font-semibold text-brand-100 hover:bg-brand-800 hover:text-white transition-colors">
+                        <i class="fa-solid fa-robot mr-1.5"></i> AI Assistant
+                    </button>
+                    <button onclick="switchTab('pitch')" id="nav-pitch" class="nav-btn px-3 py-2 rounded-lg text-xs font-semibold text-amber-300 hover:bg-brand-800 transition-colors">
+                        <i class="fa-solid fa-award mr-1.5"></i> Hackathon Info
+                    </button>
+                </nav>
+
+                <!-- Right Action Buttons -->
+                <div class="hidden sm:flex items-center space-x-3">
+                    <button onclick="resetDemoData()" class="px-3 py-1.5 bg-brand-800/80 hover:bg-brand-700 text-xs font-semibold rounded-lg text-brand-100 border border-brand-600 transition flex items-center">
+                        <i class="fa-solid fa-rotate-left mr-1.5"></i> Reset Demo Data
+                    </button>
+                    <span class="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                        <span class="w-2 h-2 mr-1.5 bg-emerald-400 rounded-full animate-pulse"></span> Demo Student
+                    </span>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="lg:hidden flex items-center space-x-2">
+                    <button onclick="resetDemoData()" title="Reset Demo Data" class="p-2 text-brand-100 hover:bg-brand-800 rounded-lg">
+                        <i class="fa-solid fa-rotate-left"></i>
+                    </button>
+                    <button id="mobile-menu-btn" onclick="toggleMobileMenu()" class="p-2 rounded-md text-brand-100 hover:text-white hover:bg-brand-800 focus:outline-none">
+                        <i class="fa-solid fa-bars text-xl" id="menu-icon"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Nav Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden bg-brand-900 border-t border-brand-800 px-2 pt-2 pb-3 space-y-1">
+            <button onclick="switchTab('dashboard')" class="mobile-nav-btn block w-full text-left px-3 py-2 rounded-md text-base font-medium text-white bg-brand-800">
+                <i class="fa-solid fa-chart-pie w-6"></i> Dashboard
+            </button>
+            <button onclick="switchTab('notices')" class="mobile-nav-btn block w-full text-left px-3 py-2 rounded-md text-base font-medium text-brand-100 hover:bg-brand-800">
+                <i class="fa-solid fa-bullhorn w-6"></i> Notices
+            </button>
+            <button onclick="switchTab('tasks')" class="mobile-nav-btn block w-full text-left px-3 py-2 rounded-md text-base font-medium text-brand-100 hover:bg-brand-800">
+                <i class="fa-solid fa-tasks w-6"></i> Deadline Tracker
+            </button>
+            <button onclick="switchTab('events')" class="mobile-nav-btn block w-full text-left px-3 py-2 rounded-md text-base font-medium text-brand-100 hover:bg-brand-800">
+                <i class="fa-solid fa-calendar-alt w-6"></i> Campus Events
+            </button>
+            <button onclick="switchTab('assistant')" class="mobile-nav-btn block w-full text-left px-3 py-2 rounded-md text-base font-medium text-brand-100 hover:bg-brand-800">
+                <i class="fa-solid fa-robot w-6"></i> AI Assistant
+            </button>
+            <button onclick="switchTab('pitch')" class="mobile-nav-btn block w-full text-left px-3 py-2 rounded-md text-base font-medium text-amber-300 hover:bg-brand-800">
+                <i class="fa-solid fa-award w-6"></i> Hackathon Presentation
+            </button>
+        </div>
+    </header>
+
+    <!-- ALERT BANNER WITH FOUNDER HONORS -->
+    <div class="bg-amber-500/10 border-b border-amber-200 text-amber-900 text-xs py-2 px-4 text-center flex items-center justify-center space-x-2">
+        <i class="fa-solid fa-monument text-amber-600"></i>
+        <span><strong>Sri Vishnu Educational Society (Bhimavaram Campus):</strong> Founded by Padma Bhushan Dr. B. V. Raju & Smt. Sita Raju. Serving VITB & SVECW students.</span>
+    </div>
+
+    <!-- MAIN CONTENT CONTAINER -->
+    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6">
+
+        <!-- ================= SECTION 1: DASHBOARD ================= -->
+        <section id="tab-dashboard" class="tab-content space-y-6">
+            <!-- Hero Welcome Card featuring Founder Tribute -->
+            <div class="bg-gradient-to-r from-brand-900 via-brand-800 to-vishnu-700 rounded-2xl p-6 sm:p-8 text-white shadow-lg relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-9xl text-white pointer-events-none">
+                    <i class="fa-solid fa-building-columns"></i>
+                </div>
+                <div class="relative z-10 max-w-3xl space-y-4">
+                    <div class="flex items-center space-x-2">
+                        <span class="px-3 py-1 bg-vishnu-600/40 text-amber-200 text-xs rounded-full font-semibold border border-amber-400/30 inline-flex items-center">
+                            <i class="fa-solid fa-crown text-amber-400 mr-1.5"></i> Honoring Founders Dr. B. V. Raju & Smt. Sita Raju
+                        </span>
+                    </div>
+
+                    <h1 class="text-2xl sm:text-4xl font-extrabold tracking-tight">Vishnu Institute of Technology & SVECW Campus Portal</h1>
+                    <p class="text-brand-100 text-sm sm:text-base leading-relaxed">
+                        Access official circulars, JNTUK exam schedules, placement drive updates, Vishnu Innovation Hub events, and instant campus assistance.
+                    </p>
+                    <div class="pt-2 flex flex-wrap gap-3">
+                        <button onclick="switchTab('assistant')" class="px-4 py-2.5 bg-vishnu-600 hover:bg-vishnu-700 text-white font-medium text-sm rounded-xl shadow-md transition flex items-center">
+                            <i class="fa-solid fa-robot mr-2"></i> Ask Vishnu AI Assistant
+                        </button>
+                        <button onclick="openAddTaskModal()" class="px-4 py-2.5 bg-white/10 hover:bg-white/20 text-white font-medium text-sm rounded-xl border border-white/20 transition flex items-center">
+                            <i class="fa-solid fa-plus mr-2"></i> Add Submission Deadline
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Overview Stats Grid -->
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+                <div onclick="switchTab('notices')" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Active Notices</span>
+                        <div class="p-2.5 bg-blue-50 text-brand-600 rounded-lg group-hover:bg-brand-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-bullhorn"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-baseline">
+                        <span id="stat-notices-count" class="text-3xl font-bold text-slate-800">0</span>
+                        <span class="ml-2 text-xs text-slate-500">announcements</span>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('tasks')" class="bg-white p-5 rounded-xl border border-red-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-red-600 uppercase tracking-wider">Pending Tasks</span>
+                        <div class="p-2.5 bg-red-100 text-red-600 rounded-lg group-hover:bg-red-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-clock"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-baseline">
+                        <span id="stat-pending-tasks" class="text-3xl font-bold text-red-600">0</span>
+                        <span class="ml-2 text-xs text-red-500">to complete</span>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('tasks')" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Completed Tasks</span>
+                        <div class="p-2.5 bg-emerald-50 text-emerald-600 rounded-lg group-hover:bg-emerald-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-check-circle"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-baseline">
+                        <span id="stat-completed-tasks" class="text-3xl font-bold text-emerald-600">0</span>
+                        <span class="ml-2 text-xs text-slate-500">done</span>
+                    </div>
+                </div>
+
+                <div onclick="switchTab('events')" class="bg-white p-5 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition cursor-pointer group">
+                    <div class="flex items-center justify-between">
+                        <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Upcoming Events</span>
+                        <div class="p-2.5 bg-purple-50 text-purple-600 rounded-lg group-hover:bg-purple-600 group-hover:text-white transition">
+                            <i class="fa-solid fa-calendar-days"></i>
+                        </div>
+                    </div>
+                    <div class="mt-4 flex items-baseline">
+                        <span id="stat-events-count" class="text-3xl font-bold text-slate-800">0</span>
+                        <span class="ml-2 text-xs text-slate-500">this month</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Two-Column Layout for Urgent Items -->
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                <!-- Left 2 Cols: Urgent Notices & Deadlines -->
+                <div class="lg:col-span-2 space-y-6">
+                    <!-- Urgent Notices Card -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <h2 class="font-bold text-slate-800 flex items-center text-lg">
+                                <i class="fa-solid fa-bell text-brand-600 mr-2"></i> Recent Campus Notices
+                            </h2>
+                            <button onclick="switchTab('notices')" class="text-xs font-semibold text-brand-600 hover:text-brand-800">
+                                View All <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                        <div id="dashboard-recent-notices" class="space-y-3">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+
+                    <!-- Imminent Deadlines -->
+                    <div class="bg-white rounded-xl border border-slate-200 shadow-sm p-5 space-y-4">
+                        <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+                            <h2 class="font-bold text-slate-800 flex items-center text-lg">
+                                <i class="fa-solid fa-list-check text-red-500 mr-2"></i> High Priority Deadlines
+                            </h2>
+                            <button onclick="switchTab('tasks')" class="text-xs font-semibold text-brand-600 hover:text-brand-800">
+                                Manage Tasks <i class="fa-solid fa-arrow-right ml-1"></i>
+                            </button>
+                        </div>
+                        <div id="dashboard-urgent-tasks" class="space-y-2">
+                            <!-- Populated dynamically -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Column: Quick AI Widget & Events -->
+                <div class="space-y-6">
+                    <div class="bg-gradient-to-br from-brand-50 to-indigo-50 border border-brand-100 rounded-xl p-5 shadow-sm space-y-3">
+                        <div class="flex items-center space-x-2">
+                            <div class="w-8 h-8 rounded-full bg-vishnu-600 text-white flex items-center justify-center font-bold text-sm">
+                                <i class="fa-solid fa-sparkles"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-slate-800 text-sm">Vishnu Smart Assistant</h3>
+                                <p class="text-xs text-slate-500">Bhimavaram Campus FAQs</p>
+                            </div>
+                        </div>
+                        <div class="relative">
+                            <input type="text" id="quick-ai-input" placeholder="e.g. Central Library timings or Bus routes?" class="w-full text-xs p-3 pr-10 border border-brand-200 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-500 bg-white">
+                            <button onclick="handleQuickAIQuery()" class="absolute right-2 top-2 p-1.5 text-brand-600 hover:text-brand-800 font-semibold">
+                                <i class="fa-solid fa-paper-plane"></i>
+                            </button>
+                        </div>
+                        <div class="flex flex-wrap gap-1.5 pt-1">
+                            <button onclick="setQuickAIQuery('Central Library timings')" class="text-[11px] bg-white border border-slate-200 px-2 py-1 rounded-md text-slate-600 hover:bg-brand-50">📚 Central Library</button>
+         
